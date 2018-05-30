@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use DB;
 use App\User;
+use App\Profile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -80,11 +81,22 @@ class RegisterController extends Controller
    */
   protected function create(array $data)
   {
-    return User::create([
-      'name' => $data['name'],
+    $user = User::create([
+      'full_name' => $data['full_name'],
+      'username' => $data['username'],
       'email' => $data['email'],
       'password' => Hash::make($data['password']),
     ]);
+    $profile = Profile::create([
+      'user_id' => $user->id,
+      'blood_group' => $data['blood_group'],
+      'phone_number' => $data['phone_number'],
+      'gender' => $data['gender'],
+      'district' => $data['district'],
+      'upazila' => $data['upazila'],
+    ]);
+
+    return $user;
   }
 
   public function getDistricts()
