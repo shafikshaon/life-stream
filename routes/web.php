@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -22,3 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Register
 Route::get('register', 'Auth\RegisterController@getDistricts')->name('register');
 Route::get('upazila/get/{id}', 'Auth\RegisterController@getUpazilas');
+
+// login
+$this->post('logout', 'Auth\LoginController@logout')->name('logout');
