@@ -126,7 +126,9 @@
                             <label for="district">{{ __('District') }}</label>
                             <select class="form-control{{ $errors->has('district') ? ' is-invalid' : '' }}" id="district" name="district" required>
                               <option>Select District</option>
-
+                              @foreach ($districts as $district => $value)
+                                <option value="{{ $district }}">{{ $value }}</option>
+                              @endforeach
                             </select>
 
                             @if ($errors->has('district'))
