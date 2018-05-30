@@ -14,7 +14,7 @@
                         <div class="row">
                           <div class="col-md-6 mb-3">
                             <label for="full_name">{{ __('Full Name') }}</label>
-                            <input type="text" class="form-control{{ $errors->has('full_name') ? ' is-invalid' : '' }}" id="full_name" placeholder="" value="{{ old('full_name') }}" required autofocus>
+                            <input type="text" class="form-control{{ $errors->has('full_name') ? ' is-invalid' : '' }}" id="full_name" placeholder="Ex: Majharul Islam" name="full_name" value="{{ old('full_name') }}" required autofocus>
 
                             @if ($errors->has('full_name'))
                               <span class="invalid-feedback">
@@ -24,7 +24,7 @@
                           </div>
                           <div class="col-md-6 mb-3">
                             <label for="username">{{ __('Username') }}</label>
-                            <input type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" id="username" placeholder="" value="{{ old('username') }}" required>
+                            <input type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" id="username" placeholder="Ex: majharul" name="username" value="{{ old('username') }}" required>
 
                             @if ($errors->has('username'))
                               <span class="invalid-feedback">
@@ -37,7 +37,7 @@
                         <div class="row">
                           <div class="col-md-6 mb-3">
                             <label for="email">{{ __('Email') }}</label>
-                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" placeholder="" value="{{ old('email') }}" required>
+                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" placeholder="Ex: majharul@gmail.com" name="email" value="{{ old('email') }}" required>
 
                             @if ($errors->has('email'))
                               <span class="invalid-feedback">
@@ -51,7 +51,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text" id="phone_number">+880</span>
                               </div>
-                              <input type="text" class="bfh-phone form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" id="phone_number" data-format="dd-dddddddd" placeholder="" value="{{ old('phone_number') }}" required>
+                              <input type="text" class="bfh-phone form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" id="phone_number" data-format="dd-dddddddd" placeholder="15-12345678" name="phone_number" value="{{ old('phone_number') }}" required>
                             </div>
 
                             @if ($errors->has('phone_number'))
@@ -65,7 +65,11 @@
                         <div class="row">
                           <div class="col-md-6 mb-3">
                             <label for="password">{{ __('Password') }}</label>
-                            <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" placeholder="" value="{{ old('password') }}" required>
+                            <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" placeholder="" name="password" value="{{ old('password') }}" required>
+
+                            <small class="form-text text-muted">
+                              Your password must be 8-100 characters long
+                            </small>
 
                             @if ($errors->has('password'))
                               <span class="invalid-feedback">
@@ -75,7 +79,7 @@
                           </div>
                           <div class="col-md-6 mb-3">
                             <label for="password_confirmation">{{ __('Confirm Password') }}</label>
-                            <input type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" id="password_confirmation" placeholder="" value="{{ old('password_confirmation') }}" required>
+                            <input type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" id="password_confirmation" placeholder="" name="password_confirmation" value="{{ old('password_confirmation') }}" required>
 
                             @if ($errors->has('password_confirmation'))
                               <span class="invalid-feedback">
@@ -155,15 +159,14 @@
 
                         <div class="row justify-content-center">
                           <div class="col-md-10 mb-3">
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="signup_agreement">
+                            <div class="form-check{{ $errors->has('signup_agreement') ? ' is-invalid' : '' }}">
+                              <input class="form-check-input" type="checkbox" id="signup_agreement" name="signup_agreement" value="1">
                               <label class="form-check-label" for="signup_agreement">
                                 By signing up, you agree to Lift Stream <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
                               </label>
                             </div>
-
                             @if ($errors->has('signup_agreement'))
-                              <span class="invalid-feedback">
+                              <span class="text-danger">
                                 <strong>{{ $errors->first('signup_agreement') }}</strong>
                               </span>
                             @endif

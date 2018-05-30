@@ -29,7 +29,7 @@ class RegisterController extends Controller
    *
    * @var string
    */
-  protected $redirectTo = '/home';
+  protected $redirectTo = '/';
 
   /**
    * Create a new controller instance.
@@ -50,9 +50,25 @@ class RegisterController extends Controller
   protected function validator(array $data)
   {
     return Validator::make($data, [
-      'name' => 'required|string|max:255',
-      'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|string|min:6|confirmed',
+      'full_name' => 'required|string|max:100',
+      'username' => 'required|string|max:30|unique:users',
+      'email' => 'required|string|email|max:100|unique:users',
+      'password' => 'required|string|min:6|max:100|confirmed',
+      'phone_number' => 'required|string|max:11|unique:profiles',
+      'gender' => 'required|string|max:12',
+      'blood_group' => 'required|string|max:3',
+      'district' => 'required|string|max:2',
+      'upazila' => 'required|string|max:3',
+      'signup_agreement' => 'accepted',
+    ],[
+      'phone_number.required' =>"Phone number is required",
+      'phone_number.max' =>"Phone number is not longer than 11 characters",
+      'phone_number.unique' =>"Phone number already exists",
+      'district.max' =>"Please select district correctly",
+      'district.required' =>"District is required",
+      'district.max' =>"Please select district correctly",
+      'upazila.required' =>"Upazila is required",
+      'upazila.max' =>"Please select upazila correctly",
     ]);
   }
 
