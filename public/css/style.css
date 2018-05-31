@@ -12,3 +12,12 @@
   color: #111;
   font-weight: 500;
 }
+.profileview-picture{
+    border: 3px solid #2ca8ff;
+    border-radius: 5px;
+    width: 160px;
+    margin-top: 10px;
+}
+img.profileview-picture{
+    max-width: 150px;
+}
