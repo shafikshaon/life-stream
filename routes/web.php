@@ -32,3 +32,7 @@ Route::get('donors', 'HomeController@getListOfDonors')->name('list_of_donors');
 // Profile
 Route::get('profile', 'ProfileController@getProfile')->name('profile')->middleware('auth');
 Route::get('profile/details', 'ProfileController@getProfileDetails')->name('profile_details')->middleware('auth');
+
+// Donation
+Route::get('donation/add', 'DonationController@getAddDonation')->name('add_donation')->middleware('auth');
+Route::post('donation/add', 'DonationController@postAddDonation')->name('add_donation')->middleware('auth');
