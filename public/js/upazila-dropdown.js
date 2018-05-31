@@ -12,7 +12,7 @@ $(document).ready(function() {
                 success:function(data) {
 
                     $('select[name="upazila"]').empty();
-                    $('select[name="upazila"]').append('<option>Select Upazila/ Thana</option>');
+                    $('select[name="upazila"]').append('<option>Search in all Upazila/ Thana </option>');
 
                     $.each(data, function(key, value){
 

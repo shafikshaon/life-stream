@@ -1,3 +1,9 @@
 #loader{
     visibility:hidden;
 }
+.user-grid{
+  border-left: 3px solid #593196 !important;
+  border-top: 1px solid #EDEDED !important;
+  border-right: 1px solid #EDEDED !important;
+  border-bottom: 1px solid #EDEDED !important;
+}

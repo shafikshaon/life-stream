@@ -10,6 +10,7 @@
 
   <title>Life Stream - @yield('title')</title>
 
+  <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/gif" sizes="16x16">
   <!-- Fonts -->
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -41,7 +42,7 @@
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Donors</a>
+              <a class="nav-link" href="{{ route('list_of_donors') }}">Donors</a>
             </li>
           </ul>
           <!-- @if (Route::has('login'))
