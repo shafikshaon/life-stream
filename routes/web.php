@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('front.home');
+// });
+Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@getDistricts');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 // Register
 Route::get('register', 'Auth\RegisterController@getDistricts')->name('register');

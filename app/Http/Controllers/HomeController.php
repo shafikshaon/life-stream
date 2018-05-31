@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+      return view('front.home');
+    }
+
+    public function getDistricts()
+    {
+      $districts = DB::table('districts')->pluck("district_name", "id")->sort();
+      return view('front.home', ['districts' => $districts]);
     }
 }
