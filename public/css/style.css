@@ -7,3 +7,8 @@
   border-right: 1px solid #EDEDED !important;
   border-bottom: 1px solid #EDEDED !important;
 }
+.list-group-item{
+  border: 1px solid #e6e3e3;
+  color: #111;
+  font-weight: 500;
+}
