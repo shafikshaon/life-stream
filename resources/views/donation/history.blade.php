@@ -51,7 +51,7 @@
                 <td>{{ $history->details }}</td>
                 <td>{{ $history->created_at->toFormattedDateString() }} ( {{ $history->created_at->diffForHumans() }} )</td>
                 <td>
-                  <a href="#"><span style="color: #12b886;"><i class="fas fa-edit"></i></span></a>
+                  <a href="{{ route('edit_donation', [$history->id]) }}"><span style="color: #12b886;"><i class="fas fa-edit"></i></span></a>
                   <a href="{{ route('delete_donation', [$history->id]) }}" data-toggle="confirmation" data-title="Delete donation information?"><span style="color: red;"><i class="fas fa-trash-alt"></i></span></a>
                 </td>
               </tr>

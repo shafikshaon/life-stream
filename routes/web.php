@@ -38,3 +38,5 @@ Route::get('donation/add', 'DonationController@getAddDonation')->name('add_donat
 Route::post('donation/add', 'DonationController@postAddDonation')->name('add_donation')->middleware('auth');
 Route::get('donation/history', 'DonationController@getDonationHistory')->name('donation_history')->middleware('auth');
 Route::get('donation/delete/{id}', 'DonationController@deleteDonationInformation')->name('delete_donation')->middleware('auth');
+Route::get('donation/edit/{id}', 'DonationController@getEditDonationHistory')->name('edit_donation')->middleware('auth');
+Route::post('donation/edit/{id}', 'DonationController@postEditDonationHistory')->name('edit_donation')->middleware('auth');
