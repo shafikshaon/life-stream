@@ -56,4 +56,10 @@ class DonationController extends Controller
 
     return redirect()->route('donation_history')->with('success', 'Donation information updated successfully');
   }
+
+  public function deleteDonationInformation($id)
+  {
+    DonationHistory::where('id', $id)->delete();
+    return redirect()->route('donation_history')->with('deletemessage', 'Donation information deleted successfully');
+  }
 }

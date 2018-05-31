@@ -32,11 +32,12 @@ Route::get('donors', 'HomeController@getListOfDonors')->name('list_of_donors');
 // Profile
 Route::get('profile', 'ProfileController@getProfile')->name('profile')->middleware('auth');
 Route::get('profile/details', 'ProfileController@getProfileDetails')->name('profile_details')->middleware('auth');
+Route::get('profile/change_password', 'ProfileController@getChangePassword')->name('change_password')->middleware('auth');
 
 // Donation
 Route::get('donation/add', 'DonationController@getAddDonation')->name('add_donation')->middleware('auth');
 Route::post('donation/add', 'DonationController@postAddDonation')->name('add_donation')->middleware('auth');
 Route::get('donation/history', 'DonationController@getDonationHistory')->name('donation_history')->middleware('auth');
-Route::get('donation/delete/{id}', 'DonationController@deleteDonationInformation')->name('delete_donation')->middleware('auth');
 Route::get('donation/edit/{id}', 'DonationController@getEditDonationHistory')->name('edit_donation')->middleware('auth');
 Route::post('donation/edit/{id}', 'DonationController@postEditDonationHistory')->name('edit_donation')->middleware('auth');
+Route::get('donation/delete/{id}', 'DonationController@deleteDonationInformation')->name('delete_donation')->middleware('auth');

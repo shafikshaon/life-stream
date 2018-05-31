@@ -18,6 +18,9 @@
   <!-- Bootstrap v4.1 pulse CSS -->
   <link href="{{ asset('css/pulse.bootstrap.css') }}" rel="stylesheet">
 
+  <!-- Bootstrap datepicker -->
+  <link rel="stylesheet" href="{{asset('bootstrap-datepicker/bootstrap-datepicker.css')}}">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -108,5 +111,44 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{asset('bootstrap-formhelpers/bootstrap-formhelpers.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/upazila-dropdown.js')}}"></script>
+    <script type="text/javascript" src="{{asset('bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/bootstrap-confirmation.js')}}"></script>
+    <!-- <script type="text/javascript" src="{{asset('js/popper.js')}}"></script> -->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle=confirmation]').confirmation({
+              rootSelector: '[data-toggle=confirmation]',
+              // other options
+            });
+
+            $('#donatedatepicker .input-group.date').datepicker({
+                format: "yyyy-mm-dd",
+                autoclose: true,
+                todayBtn: 'linked'
+            });
+
+            $('#donatedatepicker').change(function() {
+              var date = $(this).val();
+              $('#donatedatepicker').attr('value', date);
+           });
+
+           $('[data-toggle="tooltip"]').tooltip()
+      });
+    </script>
+
+    <script type="text/javascript">
+        //Function to show image before upload
+        function preview_image(event)
+        {
+          var reader = new FileReader();
+          reader.onload = function()
+        {
+         var output = document.getElementById('output_image');
+         output.src = reader.result;
+        }
+          reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </body>
 </html>

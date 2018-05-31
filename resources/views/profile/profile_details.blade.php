@@ -57,8 +57,8 @@
                 @endif --}}
 
                 <a href="#" class="btn btn-primary">Edit Profile</a>
-                <a href="#" class="btn btn-danger">Add Donation</a>
-                <a href="#" class="btn btn-success">Donation History</a>
+                <a href="{{ route('add_donation') }}" class="btn btn-danger">Add Donation</a>
+                <a href="{{ route('donation_history') }}" class="btn btn-success">Donation History</a>
               </div>
               <div class="card-footer text-muted">
                 <strong>Joined:</strong> {{$profile->created_at->diffForHumans()}}
