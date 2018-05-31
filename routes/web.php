@@ -36,3 +36,5 @@ Route::get('profile/details', 'ProfileController@getProfileDetails')->name('prof
 // Donation
 Route::get('donation/add', 'DonationController@getAddDonation')->name('add_donation')->middleware('auth');
 Route::post('donation/add', 'DonationController@postAddDonation')->name('add_donation')->middleware('auth');
+Route::get('donation/history', 'DonationController@getDonationHistory')->name('donation_history')->middleware('auth');
+Route::get('donation/delete/{id}', 'DonationController@deleteDonationInformation')->name('delete_donation')->middleware('auth');

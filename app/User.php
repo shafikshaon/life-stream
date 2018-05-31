@@ -31,4 +31,9 @@ class User extends Authenticatable
   {
     return $this->hasOne('App\Profile');
   }
+
+  public function donation_histories()
+  {
+    return $this->hasMany('App\DonationHistory');
+  }
 }

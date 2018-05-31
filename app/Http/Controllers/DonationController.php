@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\DonationHistory;
 
 class DonationController extends Controller
@@ -17,10 +18,6 @@ class DonationController extends Controller
     $this->validate($request, [
       'donate_at' => 'required|string|max:10',
       'details' => 'max:1000',
-    ],[
-      'donate_at.required' =>"Donation date is required",
-      'donate_at.max' =>"Donation date is not correct format. Format is yyyy-mm-dd",
-      'details.max' =>"Details is not longer that 1000 characters",
     ]);
 
     $donation = DonationHistory::create([
@@ -30,5 +27,11 @@ class DonationController extends Controller
     ]);
 
     return redirect()->route('add_donation')->with('success', 'Donation information added successfully');
+  }
+
+  public function getDonationHistory()
+  {
+    $histories = User::find(auth()->user()->id)->donation_histories->sortBy('donate_at');
+    return view('donation.history', ['histories' => $histories]);
   }
 }
