@@ -16,7 +16,7 @@ class DonationController extends Controller
   public function postAddDonation(Request $request)
   {
     $this->validate($request, [
-      'donate_at' => 'required|string|max:10',
+      'donate_at' => 'required|string',
       'details' => 'max:1000',
     ]);
 

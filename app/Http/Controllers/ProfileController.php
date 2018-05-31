@@ -8,6 +8,7 @@ use App\Profile;
 use App\District;
 use App\Upazila;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -31,6 +32,22 @@ class ProfileController extends Controller
   {
     $user = User::find(auth()->user()->id);
     return view('profile.change_password', ['user' => $user]);
+  }
+
+  public function postChangePassword(Request $request)
+  {
+    $this->validate($request, [
+      'new_password' => 'required|string|min:8|max:100|required_with:confirm_new_password|same:confirm_new_password',
+    ]);
+    $currentPassword = User::where('password', $request['current_password']);
+    if(!$currentPassword){
+      return redirect()->route('change_password')->with('failed', 'Current password is wrong');
+    }
+    $user = User::where('id', auth()->user()->id)->update([
+      'password' => Hash::make($request['new_password']),
+    ]);
+
+    return redirect()->route('change_password')->with('success', 'Password updated successfully');
   }
 
   public function getUploadProfilePicture()

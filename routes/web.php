@@ -33,6 +33,7 @@ Route::get('donors', 'HomeController@getListOfDonors')->name('list_of_donors');
 Route::get('profile', 'ProfileController@getProfile')->name('profile')->middleware('auth');
 Route::get('profile/details', 'ProfileController@getProfileDetails')->name('profile_details')->middleware('auth');
 Route::get('profile/change_password', 'ProfileController@getChangePassword')->name('change_password')->middleware('auth');
+Route::post('profile/change_password', 'ProfileController@postChangePassword')->name('change_password')->middleware('auth');
 Route::get('profile/uploadpic', 'ProfileController@getUploadProfilePicture')->name('upload_profile_picture')->middleware('auth');
 Route::post('profile/uploadpic', 'ProfileController@postUploadProfilePicture')->name('upload_profile_picture')->middleware('auth');
 
