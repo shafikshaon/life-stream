@@ -15,6 +15,18 @@
                   $profile = DB::table('profiles')->where('user_id', $user->id)->first();
                   $upazila = App\Upazila::where('id', $profile->upazila)->first();
                   $district = App\District::where('id', $profile->district)->first();
+                  $donation = App\DonationHistory::where('user_id', $user->id)->count();
+                  $last_donation = App\DonationHistory::where('user_id', $user->id)->orderBy('donate_at', 'desc')->first();
+                  $date1 = Carbon\Carbon::now();
+
+
+
+                  //Available if donate before 120 days
+                  $datetime1 = date_create(Carbon\Carbon::now());
+                  $datetime2 = date_create(Carbon\Carbon::parse($last_donation['donate_at']));
+                  $blood_donation_interval = date_diff($datetime2, $datetime1);
+
+                  $days = (int)$blood_donation_interval->format('%a');
               ?>
               @if ($profile->img_path)
                 <img class="align-self-center mr-3" src="{{asset('uploads/'.$profile->img_path)}}" alt="{{$user->full_name}}" style="width: 80px; height: 80px;">
