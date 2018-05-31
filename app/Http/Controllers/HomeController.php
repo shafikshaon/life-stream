@@ -37,7 +37,7 @@ class HomeController extends Controller
 
   public function getListOfDonors()
   {
-    $users = User::where('id', '!=', Auth::id())->paginate(10);
+    $users = User::where('id', '!=', Auth::id())->paginate(5);
     return view('front.list_of_donors', ['users' => $users]);
   }
 }
