@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">Add Last Donation<i></i></div>
+        <div class="card-header text-center">Add Last Donation<i></i></div>
 
         <div class="card-body">
           @if($errors->any())

@@ -48,23 +48,6 @@
               <a class="nav-link" href="{{ route('list_of_donors') }}">Donors</a>
             </li>
           </ul>
-          <!-- @if (Route::has('login'))
-          <ul class="navbar-nav">
-              @auth
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/home') }}">Home</a>
-              </li>
-              @else
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">dsfds</a>
-              </li>
-              @endauth
-          </ul>
-          @endif -->
-
 
           <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
@@ -102,18 +85,23 @@
       </main>
     </div>
 
+    <div class="footer">
+        <ul class="footer-nav">
+            <li>&copy All Rights Reserved. <strong>Life Stream</strong></li>
+            <li><a href="#">Privacy Policy</a></li>
+        </ul>
+    </div>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"> -->
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{asset('bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>
     <script type="text/javascript" src="{{asset('bootstrap-formhelpers/bootstrap-formhelpers.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/upazila-dropdown.js')}}"></script>
-    <script type="text/javascript" src="{{asset('bootstrap-datepicker/bootstrap-datepicker.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/bootstrap-confirmation.js')}}"></script>
-    <!-- <script type="text/javascript" src="{{asset('js/popper.js')}}"></script> -->
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -131,6 +119,35 @@
             $('#donatedatepicker').change(function() {
               var date = $(this).val();
               $('#donatedatepicker').attr('value', date);
+           });
+
+           $('select[name="district"]').on('change', function(){
+               var districtId = $(this).val();
+               if(districtId) {
+                   $.ajax({
+                       url: '/upazila/get/'+districtId,
+                       type:'GET',
+                       dataType:'json',
+                       beforeSend: function(){
+                           $('#loader').css("visibility", "visible");
+                       },
+                       success:function(data) {
+
+                           $('select[name="upazila"]').empty();
+                           $('select[name="upazila"]').append('<option value="">Search in all Upazila/ Thana </option>');
+
+                           $.each(data, function(key, value){
+
+                               $('select[name="upazila"]').append('<option value="'+ key +'">' + value + '</option>');
+                           });
+                       },
+                       complete: function(){
+                           $('#loader').css("visibility", "hidden");
+                       }
+                   });
+               } else {
+                   $('select[name="upazila"]').empty();
+               }
            });
 
            $('[data-toggle="tooltip"]').tooltip()
