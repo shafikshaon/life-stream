@@ -28,6 +28,7 @@ $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Front end
 Route::get('donors', 'HomeController@getListOfDonors')->name('list_of_donors');
+Route::get('find', 'HomeController@fetchFindADondor')->name('find_a_donor');
 
 // Profile
 Route::get('profile', 'ProfileController@getProfile')->name('profile')->middleware('auth');

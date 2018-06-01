@@ -8,8 +8,8 @@
       <p class="text-center">
         <img src="{{ asset('img/logo.png') }}" alt="logo" width="40%" padding="10px 0 15px;">
       </p>
-      <form method="get" action="#">
-          @csrf
+      <form method="get" action="{{ route('find_a_donor') }}">
+        
         <div class="form-row">
           <div class="form-group col-md-3">
             <select class="form-control{{ $errors->has('blood_group') ? ' is-invalid' : '' }}" id="blood_group" name="blood_group" required>
@@ -31,7 +31,7 @@
           </div>
           <div class="form-group col-md-4">
             <select class="form-control{{ $errors->has('district') ? ' is-invalid' : '' }}" id="district" name="district">
-              <option>Search in all District</option>
+              <option value="">Search in all District</option>
               @foreach ($districts as $district => $value)
                 <option value="{{ $district }}">{{ $value }}</option>
               @endforeach
@@ -45,7 +45,7 @@
           </div>
           <div class="form-group col-md-4">
             <select name="upazila" class="form-control{{ $errors->has('upazila') ? ' is-invalid' : '' }}" id="upazila">
-              <option>Search in all Upazila/ Thana </option>
+              <option value="">Search in all Upazila/ Thana </option>
             </select>
 
             @if ($errors->has('upazila'))
